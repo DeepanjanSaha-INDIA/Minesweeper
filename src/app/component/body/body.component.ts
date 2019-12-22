@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MainService } from 'src/app/service/main.service';
 
 @Component({
   selector: 'app-body',
@@ -7,15 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BodyComponent implements OnInit {
 
-  rowNum = 10;
-  colNum = 10;
-  rowArr = Array(this.rowNum).fill(0).map((x,i)=>i);
-  colArr = Array(this.colNum).fill(0).map((x,i)=>i);
-  constructor() { }
+  rowNum: number;
+  colNum: number;
+  rowArr:Array<number>;
+  colArr:Array<number>;
+  matrix: Array<Array<number>>;
+  constructor(private service: MainService) { }
 
   ngOnInit() {
-    console.log(this.rowArr);
-    console.log(this.colArr);
+    this.service.dataObservable.subscribe((data) => {
+      this.rowNum = data.rowNum;
+      this.colNum = data.colNum;
+      this.rowArr = data.rowArr;
+      this.colArr = data.colArr;
+      this.matrix = data.matrix;
+    });
   }
 
 }

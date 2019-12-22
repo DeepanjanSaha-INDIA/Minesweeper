@@ -1,7 +1,7 @@
-<div *ngFor = "let row of rowArr" style="text-align: center;">
+<div *ngFor = "let row of rowArr; let r = index" style="text-align: center;">
     <div class="btn-group btn-group-lg" role="group">
-        <span *ngFor = "let col of colArr">
-            <button type="button" class="btn btn-secondary" style="height: 100%; padding: 20px"> </button>
+        <span *ngFor = "let col of colArr; let c = index">
+            <button type="button" class="btn btn-secondary" style="height: 100%; padding: 20px"> {{matrix[row][col]}} </button>
         </span>
     </div>
 </div>
