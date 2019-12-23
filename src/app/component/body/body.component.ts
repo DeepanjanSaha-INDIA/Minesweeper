@@ -10,6 +10,8 @@ import { Data } from 'src/app/model/data';
 export class BodyComponent implements OnInit {
 
   data: Data = new Data();
+  flagged: Array<Array<boolean>>;
+
   constructor(private service: MainService) { }
 
   getTxtColor(r: number, c: number){
@@ -30,9 +32,53 @@ export class BodyComponent implements OnInit {
     return color[value];
   }
 
+  clicked(r: number, c:number){
+    if(this.flagged[r][c]==true){
+      return;
+    } else if(this.data.matrix[r][c]!=0){
+      this.data.clickedMatrix[r][c]=true;
+      return;
+    } else {
+      for(let row = Math.max(0, r-1); row<=Math.min(9, r+1); row++){
+        for(let col = Math.max(0, c-1); col<=Math.min(9, c+1); col++){
+          if(this.data.clickedMatrix[row][col]==true){
+              continue;
+          } else {
+            this.data.clickedMatrix[row][col]=true;
+            this.clicked(row, col);
+          }
+        }
+      }
+      return;
+    }
+  }
+
+  flagging(e:Event, r: number, c:number){
+    e.preventDefault();
+    if(this.data.clickedMatrix[r][c]==true){
+      console.log("returned");
+      return;
+    }
+    console.log("flagged", r,c);
+    if (this.flagged[r][c]==true){
+      this.data.n_flag -= 1;
+      this.flagged[r][c]=false;
+      console.log("disablesd");
+    } else {
+      this.data.n_flag += 1;
+      this.flagged[r][c]=true;
+      console.log("enabled");
+    }
+    this.service.dataBehaviourSubject.next(this.data);
+  }
+
   ngOnInit() {
     this.service.dataObservable.subscribe((data) => {
       this.data = data;
     });
+    this.flagged = Array(this.data.rowNum);
+    for(let i=0; i<this.data.rowNum; i++){
+        this.flagged[i] = Array(this.data.colNum).fill(false);
+    }
   }
 }

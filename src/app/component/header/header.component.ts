@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
 
     this.service.dataObservable.subscribe((data) => {
-      this.bombs = data.bomb;
+      this.bombs = data.bomb - data.n_flag;
     });
 
     setInterval(() => {

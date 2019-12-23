@@ -8,7 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 export class MainService {
 
   private data : Data = new Data();
-  private dataBehaviourSubject = new BehaviorSubject<Data>(this.data);
+  public dataBehaviourSubject = new BehaviorSubject<Data>(this.data);
   dataObservable = this.dataBehaviourSubject.asObservable();
 
   constructor() { }

@@ -2,9 +2,11 @@
     <div class="btn-group btn-group-lg" role="group">
         <span *ngFor = "let col of data.colArr; let c = index">
             <button type="button" class="btn btn-secondary" style="color: #0000ff;" 
-            [ngClass]="{'disabled': data.clickedMatrix[row][col]}" 
-            [ngStyle]="{'background-color': getBgColor(row, col), 'color': getTxtColor(row, col)}" (click)="data.clickedMatrix[row][col]=true;"> 
-                {{data.matrix[row][col]}} 
+            [ngClass]="{'disabled': data.clickedMatrix[row][col] || flagged[row][col]}" 
+            [ngStyle]="{'background-color': getBgColor(row, col), 'color': getTxtColor(row, col)}"
+            (click)="clicked(row, col)"
+            (contextmenu)="flagging($event, row, col)"> 
+                {{data.matrix[row][col]}}
             </button>
         </span>
     </div>

@@ -1,6 +1,7 @@
 export class Data {
 
     public bomb: number;
+    public n_flag: number;
     public rowNum: number;
     public colNum: number;
     public rowArr: Array<number>;
@@ -12,6 +13,7 @@ export class Data {
         this.rowNum = 10;
         this.colNum = 10;
         this.bomb = 10;
+        this.n_flag = 0;
 
         // Creating rowArr and colArr for iterating purpose in body.component.html
         this.rowArr = Array(this.rowNum).fill(0).map((x,i)=>i);
