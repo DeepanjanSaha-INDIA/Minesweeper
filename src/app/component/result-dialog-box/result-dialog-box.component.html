@@ -1,0 +1,6 @@
+<h1 mat-dialog-title>Hi {{data.user}}</h1>
+<div mat-dialog-content>
+  <p>{{data.result}}</p>
+  <p> Time taken: {{data.minutes | number:'1.0'}}:{{data.seconds | number:'2.0'}}</p>
+</div>
+<button mat-button (click)="onNoClick()">Ok thanks</button>

@@ -9,11 +9,25 @@ export class Data {
     public matrix: Array<Array<number>>;
     public clickedMatrix: Array<Array<boolean>>;
 
+    public user: string;
+    public result: string;
+    public minutes: number;
+    public seconds: number;
+    public gameOver: boolean;
+
     constructor(){
+        // Initialise values
         this.rowNum = 10;
         this.colNum = 10;
         this.bomb = 10;
         this.n_flag = 0;
+
+        // Initialise values for dialog box
+        this.user = "Deepanjan";
+        this.result = "You Lost";
+        this.gameOver = false;
+        this.minutes = 0;
+        this.seconds = 0;
 
         // Creating rowArr and colArr for iterating purpose in body.component.html
         this.rowArr = Array(this.rowNum).fill(0).map((x,i)=>i);
