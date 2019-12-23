@@ -1,7 +1,11 @@
-<div *ngFor = "let row of rowArr; let r = index" style="text-align: center;">
+<div *ngFor = "let row of data.rowArr; let r = index" style="text-align: center;">
     <div class="btn-group btn-group-lg" role="group">
-        <span *ngFor = "let col of colArr; let c = index">
-            <button type="button" class="btn btn-secondary" style="height: 100%; padding: 20px"> {{matrix[row][col]}} </button>
+        <span *ngFor = "let col of data.colArr; let c = index">
+            <button type="button" class="btn btn-secondary" style="color: #0000ff;" 
+            [ngClass]="{'disabled': data.clickedMatrix[row][col]}" 
+            [ngStyle]="{'background-color': getBgColor(row, col), 'color': getTxtColor(row, col)}" (click)="data.clickedMatrix[row][col]=true;"> 
+                {{data.matrix[row][col]}} 
+            </button>
         </span>
     </div>
 </div>

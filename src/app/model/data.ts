@@ -6,6 +6,7 @@ export class Data {
     public rowArr: Array<number>;
     public colArr: Array<number>;
     public matrix: Array<Array<number>>;
+    public clickedMatrix: Array<Array<boolean>>;
 
     constructor(){
         this.rowNum = 10;
@@ -22,6 +23,11 @@ export class Data {
             this.matrix[i] = Array(this.colNum).fill(0);
         }
 
+        this.clickedMatrix = Array(this.rowNum);
+        for(let i=0; i<this.rowNum; i++){
+            this.clickedMatrix[i] = Array(this.colNum).fill(false);
+        }
+
         // Setting bombs
         let bmb = 0;
         while(bmb<this.bomb){
@@ -30,7 +36,6 @@ export class Data {
             if(this.matrix[r][c] == 9){
                 continue;
             }
-            console.log(r, c, this.matrix[r][c]);
             this.matrix[r][c] = 9;
             bmb++;
         }
@@ -55,6 +60,5 @@ export class Data {
                 this.matrix[rowInd][colInd] = count;
             }
         }
-        console.log(this.matrix);
     }
 }
