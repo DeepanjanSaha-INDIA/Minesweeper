@@ -13,6 +13,7 @@ export class ResultDialogBoxComponent implements OnInit {
   constructor(private service: MainService, public dialogRef: MatDialogRef<ResultDialogBoxComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Data) {}
 
+  // Closes the dialog box
   onNoClick(): void {
     this.dialogRef.close();
   }

@@ -17,6 +17,7 @@ export class BodyComponent implements OnInit {
 
   constructor(private service: MainService, private dialog: MatDialog) { }
 
+  // Color of the number displayed in box
   getTxtColor(r: number, c: number){
     if(this.data.clickedMatrix[r][c]==false){
       return '#003399';
@@ -25,6 +26,7 @@ export class BodyComponent implements OnInit {
     }
   }
 
+  // Color of the background of the box
   getBgColor(r: number, c: number){
     if(this.data.clickedMatrix[r][c]==false){
       return '#003399';
@@ -35,7 +37,7 @@ export class BodyComponent implements OnInit {
     return color[value];
   }
 
-
+  // Checking if game is over (won or lost)
   checkEndGame(r:number, c:number){
     // Checking the lost condition
     if(this.data.matrix[r][c]==9){
@@ -62,6 +64,7 @@ export class BodyComponent implements OnInit {
     }
   }
 
+  // Function executed when button is clicked
   clicked(r: number, c:number){
     if(this.flagged[r][c]==true){
       // If flagged return
@@ -88,6 +91,7 @@ export class BodyComponent implements OnInit {
     }
   }
 
+  // Function executed when button is flaffed (right clicked)
   flagging(e:Event, r: number, c:number){
     e.preventDefault();
     if(this.data.clickedMatrix[r][c]==true){
@@ -107,6 +111,7 @@ export class BodyComponent implements OnInit {
     this.service.dataBehaviourSubject.next(this.data);
   }
 
+  // Show final result in dialog box
   finalResult() {
     console.log("result is out");
     const dialogRef = this.dialog.open(ResultDialogBoxComponent, {

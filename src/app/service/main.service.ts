@@ -7,6 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class MainService {
 
+  // Setting data as behaviour subject
   private data : Data = new Data();
   public dataBehaviourSubject = new BehaviorSubject<Data>(this.data);
   dataObservable = this.dataBehaviourSubject.asObservable();

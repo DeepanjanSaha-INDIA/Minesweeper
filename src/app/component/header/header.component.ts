@@ -13,16 +13,15 @@ export class HeaderComponent implements OnInit {
   seconds: number = 0;
   bombs: number = 0;
   data: Data = new Data();
-  id: object;
   constructor(private service: MainService) { }
 
   ngOnInit() {
-
     this.service.dataObservable.subscribe((data) => {
       this.bombs = data.bomb - data.n_flag;
       this.data = data;
     });
 
+    // Timer in header of the game
     setInterval(() => {
       if(this.data.gameOver){
         this.data.minutes = this.minutes;
